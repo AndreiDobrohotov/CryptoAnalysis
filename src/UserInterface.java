@@ -16,10 +16,10 @@ public class UserInterface extends JFrame {
     private static final Color greenColor = new Color(0,90,0);
     private static final Font font = new Font("Magneto",Font.BOLD,21);
 
-    //главная панель
+    //РіР»Р°РІРЅР°СЏ РїР°РЅРµР»СЊ
     private static final ImagePanel PANEL = new ImagePanel();
 
-    //все кнопочные виджеты
+    //РІСЃРµ РєРЅРѕРїРѕС‡РЅС‹Рµ РІРёРґР¶РµС‚С‹
     private static final JButton openFileButton = new JButton();
     private static final JButton encryptionButton = new JButton();
     private static final JButton decryptionButton = new JButton();
@@ -29,8 +29,8 @@ public class UserInterface extends JFrame {
     private static final JButton plusKeyButton = new JButton();
     private static final JButton minusKeyButton = new JButton();
 
-    //все текстовые виджеты
-    private static final JLabel openFileStatus = new JLabel("Файл не выбран.");
+    //РІСЃРµ С‚РµРєСЃС‚РѕРІС‹Рµ РІРёРґР¶РµС‚С‹
+    private static final JLabel openFileStatus = new JLabel("Р¤Р°Р№Р» РЅРµ РІС‹Р±СЂР°РЅ.");
     private static final JLabel fileName1 = new JLabel();
     private static final JLabel encryptedFileName = new JLabel();
     private static final JLabel fileName2 = new JLabel();
@@ -41,7 +41,7 @@ public class UserInterface extends JFrame {
     private static final JLabel statisticFileName = new JLabel();
     private static final JLabel key = new JLabel("13");
 
-    //группа методов по работе с текстом
+    //РіСЂСѓРїРїР° РјРµС‚РѕРґРѕРІ РїРѕ СЂР°Р±РѕС‚Рµ СЃ С‚РµРєСЃС‚РѕРј
     private static int getKey(){return Integer.parseInt(key.getText());}
     private static String getFileName(){return file==null?"":file.getName();}
     private static String getFileNameNoTxt(){return file==null?"":getFileName().substring(0,getFileName().lastIndexOf('.'));}
@@ -50,9 +50,9 @@ public class UserInterface extends JFrame {
     private static String getFileAbsolutePath(){return file==null?"":file.getAbsolutePath();}
     private static String getFilePath() {return file==null?"":file.getParentFile().getAbsolutePath();}
 
-    //главный конструктор
+    //РіР»Р°РІРЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     public UserInterface() {
-        super("Шифрование / Расшифровка / Криптоанализ");
+        super("РЁРёС„СЂРѕРІР°РЅРёРµ / Р Р°СЃС€РёС„СЂРѕРІРєР° / РљСЂРёРїС‚РѕР°РЅР°Р»РёР·");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
@@ -60,197 +60,197 @@ public class UserInterface extends JFrame {
         setBounds(dimension.width/2 - x/2, dimension.height/2 - y/2,x,y);
         fileChooserRussifier();
 
-        //добавляем панель и устаналиваем свободное размещение элементов
+        //РґРѕР±Р°РІР»СЏРµРј РїР°РЅРµР»СЊ Рё СѓСЃС‚Р°РЅР°Р»РёРІР°РµРј СЃРІРѕР±РѕРґРЅРѕРµ СЂР°Р·РјРµС‰РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ
         add(PANEL);
         PANEL.setLayout(null);
 
-        //инициализируем и добавляем все элементы на панель
+        //РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј Рё РґРѕР±Р°РІР»СЏРµРј РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РЅР° РїР°РЅРµР»СЊ
         labelsInitialization();
         buttonsInitialization();
 
-        //скрываем все элементы, пока не будет выбран файл
+        //СЃРєСЂС‹РІР°РµРј РІСЃРµ СЌР»РµРјРµРЅС‚С‹, РїРѕРєР° РЅРµ Р±СѓРґРµС‚ РІС‹Р±СЂР°РЅ С„Р°Р№Р»
         showElements(false);
 
     }
 
-    //инициализируем все кнопки (основная логика находится здесь)
+    //РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РІСЃРµ РєРЅРѕРїРєРё (РѕСЃРЅРѕРІРЅР°СЏ Р»РѕРіРёРєР° РЅР°С…РѕРґРёС‚СЃСЏ Р·РґРµСЃСЊ)
     private static void buttonsInitialization(){
-        //Добавляем кнопку "выбрать файл" на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ "РІС‹Р±СЂР°С‚СЊ С„Р°Р№Р»" РЅР° РїР°РЅРµР»СЊ
         PANEL.add(openFileButton);
         openFileButton.setBounds(265,155,150,25);
         openFileButton.setIcon(new ImageIcon("images/selectButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         openFileButton.addActionListener(e -> {
-            //Создаем и открываем меню для выбора файла
+            //РЎРѕР·РґР°РµРј Рё РѕС‚РєСЂС‹РІР°РµРј РјРµРЅСЋ РґР»СЏ РІС‹Р±РѕСЂР° С„Р°Р№Р»Р°
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(getFileAbsolutePath()));
-            int ret = fileChooser.showDialog(null, "Выбрать файл");
+            int ret = fileChooser.showDialog(null, "Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р»");
             if (ret == JFileChooser.APPROVE_OPTION) {
-                //Проверяем что выбранный файл в формате *.txt
+                //РџСЂРѕРІРµСЂСЏРµРј С‡С‚Рѕ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р» РІ С„РѕСЂРјР°С‚Рµ *.txt
                 fileIsCorrect(fileChooser.getSelectedFile());
             }
         });
 
 
-        //Добавляем кнопку "зашифровать" на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ "Р·Р°С€РёС„СЂРѕРІР°С‚СЊ" РЅР° РїР°РЅРµР»СЊ
         PANEL.add(encryptionButton);
         encryptionButton.setBounds(250,310,110,25);
         encryptionButton.setIcon(new ImageIcon("images/encryptButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         encryptionButton.addActionListener(e -> {
             showElements(false);
-            //проверяем существует ли файл
+            //РїСЂРѕРІРµСЂСЏРµРј СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё С„Р°Р№Р»
             if(Files.exists(Path.of(getFileAbsolutePath()))){
                 String pathForRead = getFileAbsolutePath();
                 String pathForWrite = getFilePath()+"/"+getEncryptedFileName()+".txt";
-                //создаем объект шифротора со значением текущего ключа
+                //СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ С€РёС„СЂРѕС‚РѕСЂР° СЃРѕ Р·РЅР°С‡РµРЅРёРµРј С‚РµРєСѓС‰РµРіРѕ РєР»СЋС‡Р°
                 OperationType encryptor = new Encryptor(getKey());
-                //выполняем метод вспомогательного класса для шифрования
+                //РІС‹РїРѕР»РЅСЏРµРј РјРµС‚РѕРґ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ РєР»Р°СЃСЃР° РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ
                 MainFileOperation.fileOperation(encryptor,pathForRead,pathForWrite);
                 openFileStatus.setForeground(greenColor);
-                openFileStatus.setText("Файл успешно зашифрован.");
+                openFileStatus.setText("Р¤Р°Р№Р» СѓСЃРїРµС€РЅРѕ Р·Р°С€РёС„СЂРѕРІР°РЅ.");
             }
             else{
                 openFileStatus.setForeground(redColor);
-                openFileStatus.setText("Операция прервана. Файл не существует.");
+                openFileStatus.setText("РћРїРµСЂР°С†РёСЏ РїСЂРµСЂРІР°РЅР°. Р¤Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.");
             }
             file = null;
         });
 
-        //Добавляем кнопку "расшифровать" на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ "СЂР°СЃС€РёС„СЂРѕРІР°С‚СЊ" РЅР° РїР°РЅРµР»СЊ
         PANEL.add(decryptionButton);
         decryptionButton.setBounds(250,460,110,25);
         decryptionButton.setIcon(new ImageIcon("images/decryptButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         decryptionButton.addActionListener(e -> {
             showElements(false);
-            //проверяем существует ли файл
+            //РїСЂРѕРІРµСЂСЏРµРј СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё С„Р°Р№Р»
             if(Files.exists(Path.of(getFileAbsolutePath()))){
                 String pathForRead = getFileAbsolutePath();
                 String pathForWrite = getFilePath()+"/"+getDecryptedFileName()+".txt";
-                //создаем объект дешифротора со значением текущего ключа
+                //СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РґРµС€РёС„СЂРѕС‚РѕСЂР° СЃРѕ Р·РЅР°С‡РµРЅРёРµРј С‚РµРєСѓС‰РµРіРѕ РєР»СЋС‡Р°
                 OperationType decryptor = new Decryptor(getKey());
-                //выполняем метод вспомогательного класса для дешифрования
+                //РІС‹РїРѕР»РЅСЏРµРј РјРµС‚РѕРґ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ РєР»Р°СЃСЃР° РґР»СЏ РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
                 MainFileOperation.fileOperation(decryptor,pathForRead,pathForWrite);
                 openFileStatus.setForeground(greenColor);
-                openFileStatus.setText("Файл успешно расшифрован.");
+                openFileStatus.setText("Р¤Р°Р№Р» СѓСЃРїРµС€РЅРѕ СЂР°СЃС€РёС„СЂРѕРІР°РЅ.");
             }
             else{
                 openFileStatus.setForeground(redColor);
-                openFileStatus.setText("Операция прервана. Файл не существует.");
+                openFileStatus.setText("РћРїРµСЂР°С†РёСЏ РїСЂРµСЂРІР°РЅР°. Р¤Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.");
             }
             file = null;
         });
 
-        //Добавляем кнопку "Brute Force" на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ "Brute Force" РЅР° РїР°РЅРµР»СЊ
         PANEL.add(bruteForceButton);
         bruteForceButton.setBounds(250,612,110,25);
         bruteForceButton.setIcon(new ImageIcon("images/bruteForceButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         bruteForceButton.addActionListener(e -> {
             showElements(false);
-            //проверяем существует ли файл
+            //РїСЂРѕРІРµСЂСЏРµРј СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё С„Р°Р№Р»
             if(Files.exists(Path.of(getFileAbsolutePath()))){
                 String pathForRead = getFileAbsolutePath();
                 String pathForWrite = getFilePath()+"/"+getFileNameNoTxt()+"BF.txt";
-                //создаем объект BruteForce
+                //СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ BruteForce
                 BruteForce bruteForce = new BruteForce();
-                //выполняем метод вспомогательного класса для поиска ключа
+                //РІС‹РїРѕР»РЅСЏРµРј РјРµС‚РѕРґ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ РєР»Р°СЃСЃР° РґР»СЏ РїРѕРёСЃРєР° РєР»СЋС‡Р°
                 MainFileOperation.fileOperation(bruteForce,pathForRead,pathForWrite);
-                //после того как метод отработал, получаем найденый ключ
+                //РїРѕСЃР»Рµ С‚РѕРіРѕ РєР°Рє РјРµС‚РѕРґ РѕС‚СЂР°Р±РѕС‚Р°Р», РїРѕР»СѓС‡Р°РµРј РЅР°Р№РґРµРЅС‹Р№ РєР»СЋС‡
                 int key = bruteForce.getKey();
                 if(key!=0){
                     openFileStatus.setForeground(greenColor);
-                    openFileStatus.setText("Подобран ключ ["+key+"]. Файл расшифрован.");
+                    openFileStatus.setText("РџРѕРґРѕР±СЂР°РЅ РєР»СЋС‡ ["+key+"]. Р¤Р°Р№Р» СЂР°СЃС€РёС„СЂРѕРІР°РЅ.");
                 }
-                //если ключ не найдет, сообщаем о неудаче
+                //РµСЃР»Рё РєР»СЋС‡ РЅРµ РЅР°Р№РґРµС‚, СЃРѕРѕР±С‰Р°РµРј Рѕ РЅРµСѓРґР°С‡Рµ
                 else{
                     openFileStatus.setForeground(redColor);
-                    openFileStatus.setText("Не удалось подобрать ключ.");
+                    openFileStatus.setText("РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕРґРѕР±СЂР°С‚СЊ РєР»СЋС‡.");
                 }
 
             }
             else{
                 openFileStatus.setForeground(redColor);
-                openFileStatus.setText("Операция прервана. Файл не существует.");
+                openFileStatus.setText("РћРїРµСЂР°С†РёСЏ РїСЂРµСЂРІР°РЅР°. Р¤Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.");
             }
             file = null;
         });
 
-        //Добавляем кнопку анализа файла на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ Р°РЅР°Р»РёР·Р° С„Р°Р№Р»Р° РЅР° РїР°РЅРµР»СЊ
         PANEL.add(analysisButton);
         analysisButton.setBounds(108,787,110,25);
         analysisButton.setIcon(new ImageIcon("images/analysisButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         analysisButton.addActionListener(e -> {
             showElements(false);
-            //проверяем существует ли файл
+            //РїСЂРѕРІРµСЂСЏРµРј СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё С„Р°Р№Р»
             if(Files.exists(Path.of(getFileAbsolutePath()))){
                 String pathForRead = getFileAbsolutePath();
-                //делаем анализ первого файла
+                //РґРµР»Р°РµРј Р°РЅР°Р»РёР· РїРµСЂРІРѕРіРѕ С„Р°Р№Р»Р°
                 StatisticAnalyzer.makeSourceFileAnalysis(pathForRead);
                 openFileStatus.setForeground(greenColor);
-                openFileStatus.setText("Файл успешно проанализирован.");
+                openFileStatus.setText("Р¤Р°Р№Р» СѓСЃРїРµС€РЅРѕ РїСЂРѕР°РЅР°Р»РёР·РёСЂРѕРІР°РЅ.");
             }
             else{
                 openFileStatus.setForeground(redColor);
-                openFileStatus.setText("Операция прервана. Файл не существует.");
+                openFileStatus.setText("РћРїРµСЂР°С†РёСЏ РїСЂРµСЂРІР°РЅР°. Р¤Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.");
             }
             file = null;
         });
 
-        //Добавляем кнопку статистичекой дешифровки на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ СЃС‚Р°С‚РёСЃС‚РёС‡РµРєРѕР№ РґРµС€РёС„СЂРѕРІРєРё РЅР° РїР°РЅРµР»СЊ
         PANEL.add(statisticButton);
         statisticButton.setBounds(302,756,110,25);
         statisticButton.setIcon(new ImageIcon("images/statisticButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         statisticButton.addActionListener(e -> {
             showElements(false);
-            //проверяем существует ли файл
+            //РїСЂРѕРІРµСЂСЏРµРј СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё С„Р°Р№Р»
             if(Files.exists(Path.of(getFileAbsolutePath()))){
                 String pathForRead = getFileAbsolutePath();
                 String pathForWrite = getFilePath()+"/"+getFileNameNoTxt()+"SA.txt";
-                //делаем анализ второго файла
+                //РґРµР»Р°РµРј Р°РЅР°Р»РёР· РІС‚РѕСЂРѕРіРѕ С„Р°Р№Р»Р°
                 StatisticAnalyzer.makeTargetFileAnalysis(pathForRead);
-                //создаем мапу на основе двух анализов со списком замены
+                //СЃРѕР·РґР°РµРј РјР°РїСѓ РЅР° РѕСЃРЅРѕРІРµ РґРІСѓС… Р°РЅР°Р»РёР·РѕРІ СЃРѕ СЃРїРёСЃРєРѕРј Р·Р°РјРµРЅС‹
                 StatisticAnalyzer.createNewEncryptionMap();
                 StatisticAnalyzer analyzer = new StatisticAnalyzer();
-                //выполняем метод вспомогательного класса для замены символов на основе мапы
+                //РІС‹РїРѕР»РЅСЏРµРј РјРµС‚РѕРґ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ РєР»Р°СЃСЃР° РґР»СЏ Р·Р°РјРµРЅС‹ СЃРёРјРІРѕР»РѕРІ РЅР° РѕСЃРЅРѕРІРµ РјР°РїС‹
                 MainFileOperation.fileOperation(analyzer,pathForRead,pathForWrite);
                 openFileStatus.setForeground(greenColor);
-                openFileStatus.setText("Файл успешно переведен.");
+                openFileStatus.setText("Р¤Р°Р№Р» СѓСЃРїРµС€РЅРѕ РїРµСЂРµРІРµРґРµРЅ.");
             }
             else{
                 openFileStatus.setForeground(redColor);
-                openFileStatus.setText("Операция прервана. Файл не существует.");
+                openFileStatus.setText("РћРїРµСЂР°С†РёСЏ РїСЂРµСЂРІР°РЅР°. Р¤Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.");
             }
             file = null;
         });
 
 
-        //Добавляем кнопку "+", для увеличения ключа, на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ "+", РґР»СЏ СѓРІРµР»РёС‡РµРЅРёСЏ РєР»СЋС‡Р°, РЅР° РїР°РЅРµР»СЊ
         PANEL.add(plusKeyButton);
         plusKeyButton.setBounds(450,349,25,25);
         plusKeyButton.setIcon(new ImageIcon("images/plusButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         plusKeyButton.addActionListener(e -> {
-            //устанавливаем предельное значение ключа
+            //СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїСЂРµРґРµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р°
             if(getKey()<70) {
-                //увеличиваем значение ключа на 1
+                //СѓРІРµР»РёС‡РёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р° РЅР° 1
                 key.setText(String.valueOf(getKey()+1));
                 refreshFileNames();
             }
         });
 
-        //Добавляем кнопку "-", для уменьшения ключа, на панель
+        //Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєСѓ "-", РґР»СЏ СѓРјРµРЅСЊС€РµРЅРёСЏ РєР»СЋС‡Р°, РЅР° РїР°РЅРµР»СЊ
         PANEL.add(minusKeyButton);
         minusKeyButton.setBounds(450,376,25,25);
         minusKeyButton.setIcon(new ImageIcon("images/minusButton.png"));
-        //обработка нажатия
+        //РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ
         minusKeyButton.addActionListener(e -> {
-            //устаналиваем предельное значение ключа
+            //СѓСЃС‚Р°РЅР°Р»РёРІР°РµРј РїСЂРµРґРµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р°
             if(getKey()>1) {
-                //уменьшаем значение ключа на 1
+                //СѓРјРµРЅСЊС€Р°РµРј Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р° РЅР° 1
                 key.setText(String.valueOf(getKey()-1));
                 refreshFileNames();
             }
@@ -258,113 +258,113 @@ public class UserInterface extends JFrame {
 
     }
 
-    //инициализируем все текстовые поля
+    //РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РІСЃРµ С‚РµРєСЃС‚РѕРІС‹Рµ РїРѕР»СЏ
     private static void labelsInitialization(){
-        //статус выбранного файла
+        //СЃС‚Р°С‚СѓСЃ РІС‹Р±СЂР°РЅРЅРѕРіРѕ С„Р°Р№Р»Р°
         PANEL.add(openFileStatus);
         openFileStatus.setBounds(200,120,285,25);
         openFileStatus.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название исходного файла шифрования
+        //РЅР°Р·РІР°РЅРёРµ РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° С€РёС„СЂРѕРІР°РЅРёСЏ
         PANEL.add(fileName1);
         fileName1.setBounds(110,320,130,25);
         fileName1.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название исходного файла дешифрования
+        //РЅР°Р·РІР°РЅРёРµ РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
         PANEL.add(fileName2);
         fileName2.setBounds(370,470,130,25);
         fileName2.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название файла результата шифрования
+        //РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЂРµР·СѓР»СЊС‚Р°С‚Р° С€РёС„СЂРѕРІР°РЅРёСЏ
         PANEL.add(encryptedFileName);
         encryptedFileName.setBounds(370,320,130,25);
         encryptedFileName.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название файла результата дишифрования
+        //РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЂРµР·СѓР»СЊС‚Р°С‚Р° РґРёС€РёС„СЂРѕРІР°РЅРёСЏ
         PANEL.add(decryptedFileName);
         decryptedFileName.setBounds(110,470,130,25);
         decryptedFileName.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //значение ключа
+        //Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р°
         PANEL.add(key);
         key.setBounds(396,359,43,31);
         key.setFont(font);
         key.setForeground(purpleColor);
         key.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название исходного файла Brute Force
+        //РЅР°Р·РІР°РЅРёРµ РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° Brute Force
         PANEL.add(fileName3);
         fileName3.setBounds(110,621,130,25);
         fileName3.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название файла результата Brute Force
+        //РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЂРµР·СѓР»СЊС‚Р°С‚Р° Brute Force
         PANEL.add(bruteForcedFileName);
         bruteForcedFileName.setBounds(370,621,130,25);
         bruteForcedFileName.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название исходного файла статистического анализа
+        //РЅР°Р·РІР°РЅРёРµ РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° СЃС‚Р°С‚РёСЃС‚РёС‡РµСЃРєРѕРіРѕ Р°РЅР°Р»РёР·Р°
         PANEL.add(fileName4);
         fileName4.setBounds(215,780,100,25);
         fileName4.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //название файла результа статистического анализа
+        //РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЂРµР·СѓР»СЊС‚Р° СЃС‚Р°С‚РёСЃС‚РёС‡РµСЃРєРѕРіРѕ Р°РЅР°Р»РёР·Р°
         PANEL.add(statisticFileName);
         statisticFileName.setBounds(400,780,100,25);
         statisticFileName.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
-    //частичная руссификация для интерфейса выбора файла
+    //С‡Р°СЃС‚РёС‡РЅР°СЏ СЂСѓСЃСЃРёС„РёРєР°С†РёСЏ РґР»СЏ РёРЅС‚РµСЂС„РµР№СЃР° РІС‹Р±РѕСЂР° С„Р°Р№Р»Р°
     private static void fileChooserRussifier(){
-        UIManager.put("FileChooser.acceptAllFileFilterText", "Все файлы");
-        UIManager.put("FileChooser.cancelButtonToolTipText", "Закрыть диалог");
-        UIManager.put("FileChooser.directoryDescriptionText", "Папка");
-        UIManager.put("FileChooser.directoryOpenButtonText", "Открыть");
-        UIManager.put("FileChooser.directoryOpenButtonToolTipText", "Открыть выбранную директорию");
-        UIManager.put("FileChooser.fileDescriptionText", "Все файлы");
-        UIManager.put("FileChooser.helpButtonText", "Помощь");
-        UIManager.put("FileChooser.helpButtonToolTipText", "Показать справку");
-        UIManager.put("FileChooser.newFolderErrorText", "Ошибка при создании каталога");
-        UIManager.put("FileChooser.openButtonText", "Открыть");
-        UIManager.put("FileChooser.openButtonToolTipText", "Открыть выбранный файл");
-        UIManager.put("FileChooser.openDialogTitleText", "Открыть");
-        UIManager.put("FileChooser.saveButtonText", "Сохранить");
-        UIManager.put("FileChooser.saveButtonToolTipText", "Сохранить выбранный файл");
-        UIManager.put("FileChooser.saveDialogTitleText", "Сохранить");
-        UIManager.put("FileChooser.updateButtonText", "Обновить");
-        UIManager.put("FileChooser.updateButtonToolTipText", "Обновить список директорий");
-        UIManager.put("FileChooser.detailsViewActionLabelText", "Таблица");
-        UIManager.put("FileChooser.detailsViewButtonAccessibleName", "Таблица");
-        UIManager.put("FileChooser.detailsViewButtonToolTipText", "Таблица");
-        UIManager.put("FileChooser.fileAttrHeaderText", "Атрибуты");
-        UIManager.put("FileChooser.fileDateHeaderText", "Изменен");
-        UIManager.put("FileChooser.fileNameHeaderText", "Имя");
-        UIManager.put("FileChooser.fileNameLabelText", "Имя файла:");
-        UIManager.put("FileChooser.fileSizeHeaderText", "Размер");
-        UIManager.put("FileChooser.fileTypeHeaderText", "Тип");
-        UIManager.put("FileChooser.filesOfTypeLabelText", "Тип файлов:");
-        UIManager.put("FileChooser.homeFolderAccessibleName", "Домой");
-        UIManager.put("FileChooser.homeFolderToolTipText", "Домой");
-        UIManager.put("FileChooser.listViewActionLabelText", "Список");
-        UIManager.put("FileChooser.listViewButtonAccessibleName", "Список");
-        UIManager.put("FileChooser.listViewButtonToolTipText", "Список");
-        UIManager.put("FileChooser.lookInLabelText", "Просмотр:");
-        UIManager.put("FileChooser.newFolderAccessibleName", "Новая папка");
-        UIManager.put("FileChooser.newFolderActionLabelText", "Новая папка");
-        UIManager.put("FileChooser.newFolderToolTipText", "Создать новую папку");
-        UIManager.put("FileChooser.refreshActionLabelText", "Обновить");
-        UIManager.put("FileChooser.saveInLabelText", "Сохранить в:");
-        UIManager.put("FileChooser.upFolderAccessibleName", "Вверх");
-        UIManager.put("FileChooser.upFolderToolTipText", "Вверх на один уровень");
-        UIManager.put("FileChooser.viewMenuLabelText", "Просмотр");
-        UIManager.put("FileChooser.cancelButtonText", "Отмена");
-        UIManager.put("FileChooser.folderNameLabelText", "Путь директории");
+        UIManager.put("FileChooser.acceptAllFileFilterText", "Р’СЃРµ С„Р°Р№Р»С‹");
+        UIManager.put("FileChooser.cancelButtonToolTipText", "Р—Р°РєСЂС‹С‚СЊ РґРёР°Р»РѕРі");
+        UIManager.put("FileChooser.directoryDescriptionText", "РџР°РїРєР°");
+        UIManager.put("FileChooser.directoryOpenButtonText", "РћС‚РєСЂС‹С‚СЊ");
+        UIManager.put("FileChooser.directoryOpenButtonToolTipText", "РћС‚РєСЂС‹С‚СЊ РІС‹Р±СЂР°РЅРЅСѓСЋ РґРёСЂРµРєС‚РѕСЂРёСЋ");
+        UIManager.put("FileChooser.fileDescriptionText", "Р’СЃРµ С„Р°Р№Р»С‹");
+        UIManager.put("FileChooser.helpButtonText", "РџРѕРјРѕС‰СЊ");
+        UIManager.put("FileChooser.helpButtonToolTipText", "РџРѕРєР°Р·Р°С‚СЊ СЃРїСЂР°РІРєСѓ");
+        UIManager.put("FileChooser.newFolderErrorText", "РћС€РёР±РєР° РїСЂРё СЃРѕР·РґР°РЅРёРё РєР°С‚Р°Р»РѕРіР°");
+        UIManager.put("FileChooser.openButtonText", "РћС‚РєСЂС‹С‚СЊ");
+        UIManager.put("FileChooser.openButtonToolTipText", "РћС‚РєСЂС‹С‚СЊ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»");
+        UIManager.put("FileChooser.openDialogTitleText", "РћС‚РєСЂС‹С‚СЊ");
+        UIManager.put("FileChooser.saveButtonText", "РЎРѕС…СЂР°РЅРёС‚СЊ");
+        UIManager.put("FileChooser.saveButtonToolTipText", "РЎРѕС…СЂР°РЅРёС‚СЊ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»");
+        UIManager.put("FileChooser.saveDialogTitleText", "РЎРѕС…СЂР°РЅРёС‚СЊ");
+        UIManager.put("FileChooser.updateButtonText", "РћР±РЅРѕРІРёС‚СЊ");
+        UIManager.put("FileChooser.updateButtonToolTipText", "РћР±РЅРѕРІРёС‚СЊ СЃРїРёСЃРѕРє РґРёСЂРµРєС‚РѕСЂРёР№");
+        UIManager.put("FileChooser.detailsViewActionLabelText", "РўР°Р±Р»РёС†Р°");
+        UIManager.put("FileChooser.detailsViewButtonAccessibleName", "РўР°Р±Р»РёС†Р°");
+        UIManager.put("FileChooser.detailsViewButtonToolTipText", "РўР°Р±Р»РёС†Р°");
+        UIManager.put("FileChooser.fileAttrHeaderText", "РђС‚СЂРёР±СѓС‚С‹");
+        UIManager.put("FileChooser.fileDateHeaderText", "РР·РјРµРЅРµРЅ");
+        UIManager.put("FileChooser.fileNameHeaderText", "РРјСЏ");
+        UIManager.put("FileChooser.fileNameLabelText", "РРјСЏ С„Р°Р№Р»Р°:");
+        UIManager.put("FileChooser.fileSizeHeaderText", "Р Р°Р·РјРµСЂ");
+        UIManager.put("FileChooser.fileTypeHeaderText", "РўРёРї");
+        UIManager.put("FileChooser.filesOfTypeLabelText", "РўРёРї С„Р°Р№Р»РѕРІ:");
+        UIManager.put("FileChooser.homeFolderAccessibleName", "Р”РѕРјРѕР№");
+        UIManager.put("FileChooser.homeFolderToolTipText", "Р”РѕРјРѕР№");
+        UIManager.put("FileChooser.listViewActionLabelText", "РЎРїРёСЃРѕРє");
+        UIManager.put("FileChooser.listViewButtonAccessibleName", "РЎРїРёСЃРѕРє");
+        UIManager.put("FileChooser.listViewButtonToolTipText", "РЎРїРёСЃРѕРє");
+        UIManager.put("FileChooser.lookInLabelText", "РџСЂРѕСЃРјРѕС‚СЂ:");
+        UIManager.put("FileChooser.newFolderAccessibleName", "РќРѕРІР°СЏ РїР°РїРєР°");
+        UIManager.put("FileChooser.newFolderActionLabelText", "РќРѕРІР°СЏ РїР°РїРєР°");
+        UIManager.put("FileChooser.newFolderToolTipText", "РЎРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ РїР°РїРєСѓ");
+        UIManager.put("FileChooser.refreshActionLabelText", "РћР±РЅРѕРІРёС‚СЊ");
+        UIManager.put("FileChooser.saveInLabelText", "РЎРѕС…СЂР°РЅРёС‚СЊ РІ:");
+        UIManager.put("FileChooser.upFolderAccessibleName", "Р’РІРµСЂС…");
+        UIManager.put("FileChooser.upFolderToolTipText", "Р’РІРµСЂС… РЅР° РѕРґРёРЅ СѓСЂРѕРІРµРЅСЊ");
+        UIManager.put("FileChooser.viewMenuLabelText", "РџСЂРѕСЃРјРѕС‚СЂ");
+        UIManager.put("FileChooser.cancelButtonText", "РћС‚РјРµРЅР°");
+        UIManager.put("FileChooser.folderNameLabelText", "РџСѓС‚СЊ РґРёСЂРµРєС‚РѕСЂРёРё");
     }
 
-    //создание класса для главной панели
+    //СЃРѕР·РґР°РЅРёРµ РєР»Р°СЃСЃР° РґР»СЏ РіР»Р°РІРЅРѕР№ РїР°РЅРµР»Рё
     public static class ImagePanel extends JPanel{
         private static final ImageIcon backGround = new ImageIcon("images/background.png");
 
-        //задаем фон на панели
+        //Р·Р°РґР°РµРј С„РѕРЅ РЅР° РїР°РЅРµР»Рё
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -372,7 +372,7 @@ public class UserInterface extends JFrame {
         }
     }
 
-    //проверяем что выбранный файл *.txt формата
+    //РїСЂРѕРІРµСЂСЏРµРј С‡С‚Рѕ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р» *.txt С„РѕСЂРјР°С‚Р°
     private static void fileIsCorrect(File fileForCheck){
         if(fileForCheck.getName().endsWith(".txt")){
             openFileStatus.setForeground(Color.BLACK);
@@ -389,13 +389,13 @@ public class UserInterface extends JFrame {
         }
         else{
             file = null;
-            openFileStatus.setText("Неверный формат файла.");
+            openFileStatus.setText("РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ С„Р°Р№Р»Р°.");
             openFileStatus.setForeground(redColor);
             showElements(false);
         }
     }
 
-    //обновляем названия файлов, чтобы они соответсвовали текущему ключу
+    //РѕР±РЅРѕРІР»СЏРµРј РЅР°Р·РІР°РЅРёСЏ С„Р°Р№Р»РѕРІ, С‡С‚РѕР±С‹ РѕРЅРё СЃРѕРѕС‚РІРµС‚СЃРІРѕРІР°Р»Рё С‚РµРєСѓС‰РµРјСѓ РєР»СЋС‡Сѓ
     private static void refreshFileNames(){
         if(file!=null){
             encryptedFileName.setText(getEncryptedFileName());
@@ -403,7 +403,7 @@ public class UserInterface extends JFrame {
         }
     }
 
-    //скрываем или показываем некоторые кнопки и текст
+    //СЃРєСЂС‹РІР°РµРј РёР»Рё РїРѕРєР°Р·С‹РІР°РµРј РЅРµРєРѕС‚РѕСЂС‹Рµ РєРЅРѕРїРєРё Рё С‚РµРєСЃС‚
     private static void showElements(boolean visible){
         decryptionButton.setVisible(visible);
         encryptionButton.setVisible(visible);
@@ -422,7 +422,7 @@ public class UserInterface extends JFrame {
         statisticButton.setVisible(visible && condition);
     }
 
-    //запускаем приложение путем создания объекта фрейма
+    //Р·Р°РїСѓСЃРєР°РµРј РїСЂРёР»РѕР¶РµРЅРёРµ РїСѓС‚РµРј СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚Р° С„СЂРµР№РјР°
     public static void main(String[] args) {
         new UserInterface();
     }

@@ -1,6 +1,6 @@
 package Operations;
 
-//шифратор, только с обратным ключем
+//С€РёС„СЂР°С‚РѕСЂ, С‚РѕР»СЊРєРѕ СЃ РѕР±СЂР°С‚РЅС‹Рј РєР»СЋС‡РµРј
 public class Decryptor extends Encryptor{
     public Decryptor(int key) {
         super(-key);
