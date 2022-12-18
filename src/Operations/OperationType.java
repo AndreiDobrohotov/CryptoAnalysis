@@ -1,6 +1,6 @@
 package Operations;
 
-//интерфейс для всех операций в классе MainFileOperation
+//РёРЅС‚РµСЂС„РµР№СЃ РґР»СЏ РІСЃРµС… РѕРїРµСЂР°С†РёР№ РІ РєР»Р°СЃСЃРµ MainFileOperation
 public interface OperationType {
     char[] operate(char[] buff);
 }

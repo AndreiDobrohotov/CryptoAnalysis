@@ -2,15 +2,15 @@ package Operations;
 
 import java.util.ArrayList;
 
-//класс содержащий весь алфавит
+//РєР»Р°СЃСЃ СЃРѕРґРµСЂР¶Р°С‰РёР№ РІРµСЃСЊ Р°Р»С„Р°РІРёС‚
 public class Alphabet {
-    private static final String allSymbols = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЪЭЮЯабвгдеёжзийклмнопрстуфхчшщьъэюя .,:!?-\"";
-    private static final String upperSymbols = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЪЭЮЯ";
+    private static final String allSymbols = "РђР‘Р’Р“Р”Р•РЃР–Р—РР™РљР›РњРќРћРџР РЎРўРЈР¤РҐР¦Р§РЁР©Р¬РЄР­Р®РЇР°Р±РІРіРґРµС‘Р¶Р·РёР№РєР»РјРЅРѕРїСЂСЃС‚СѓС„С…С‡С€С‰СЊСЉСЌСЋСЏ .,:!?-\"";
+    private static final String upperSymbols = "РђР‘Р’Р“Р”Р•РЃР–Р—РР™РљР›РњРќРћРџР РЎРўРЈР¤РҐР¦Р§РЁР©Р¬РЄР­Р®РЇ";
     private static final ArrayList<Character> allChars = new ArrayList<>();
     private static final ArrayList<Character> allUpperChars = new ArrayList<>();
     private static final ArrayList<Character> allSigns = new ArrayList<>();
 
-    // блок инициализации всех листов из стринговых переменных
+    // Р±Р»РѕРє РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РІСЃРµС… Р»РёСЃС‚РѕРІ РёР· СЃС‚СЂРёРЅРіРѕРІС‹С… РїРµСЂРµРјРµРЅРЅС‹С…
     static {
         for(Character character : allSymbols.toCharArray()){
             allChars.add(character);

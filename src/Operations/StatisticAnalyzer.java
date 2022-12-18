@@ -13,16 +13,16 @@ public class StatisticAnalyzer implements OperationType {
     public char[] operate(char[] buff) {
         char[] newBuff = new char[buff.length];
         for(int i=0; i<buff.length; i++){
-            //если элемент содержится в мапе, делаем замену через ключ на значение
+            //РµСЃР»Рё СЌР»РµРјРµРЅС‚ СЃРѕРґРµСЂР¶РёС‚СЃСЏ РІ РјР°РїРµ, РґРµР»Р°РµРј Р·Р°РјРµРЅСѓ С‡РµСЂРµР· РєР»СЋС‡ РЅР° Р·РЅР°С‡РµРЅРёРµ
             if(encryptionMap.containsKey(buff[i])){
                 newBuff[i]=encryptionMap.get(buff[i]);
             }
-            //если не содержится, записываем как есть
+            //РµСЃР»Рё РЅРµ СЃРѕРґРµСЂР¶РёС‚СЃСЏ, Р·Р°РїРёСЃС‹РІР°РµРј РєР°Рє РµСЃС‚СЊ
             else{
                 newBuff[i] = buff[i];
             }
         }
-        //возвращаем измененый массив
+        //РІРѕР·РІСЂР°С‰Р°РµРј РёР·РјРµРЅРµРЅС‹Р№ РјР°СЃСЃРёРІ
         return newBuff;
 
     }
@@ -33,12 +33,12 @@ public class StatisticAnalyzer implements OperationType {
     private static HashMap<Character,Character> encryptionMap;
     private static boolean isSourceFileAnalysed = false;
 
-    //проверка, получен ли анализ первого файла, чтобы иметь возможность начать работу со вторым
+    //РїСЂРѕРІРµСЂРєР°, РїРѕР»СѓС‡РµРЅ Р»Рё Р°РЅР°Р»РёР· РїРµСЂРІРѕРіРѕ С„Р°Р№Р»Р°, С‡С‚РѕР±С‹ РёРјРµС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РЅР°С‡Р°С‚СЊ СЂР°Р±РѕС‚Сѓ СЃРѕ РІС‚РѕСЂС‹Рј
     public static boolean isSourceFileAnalysed() {
         return isSourceFileAnalysed;
     }
 
-    //создает ArrayList элементов CharCounter на основе алфавита
+    //СЃРѕР·РґР°РµС‚ ArrayList СЌР»РµРјРµРЅС‚РѕРІ CharCounter РЅР° РѕСЃРЅРѕРІРµ Р°Р»С„Р°РІРёС‚Р°
     private static ArrayList<CharCounter> createEmptyStatisticList(){
         ArrayList<CharCounter> list = new ArrayList<>();
         for(Character character : Alphabet.getAllChars()){
@@ -47,46 +47,46 @@ public class StatisticAnalyzer implements OperationType {
         return list;
     }
 
-    //Запускает анализ первого файла и запимывает в переменную
+    //Р—Р°РїСѓСЃРєР°РµС‚ Р°РЅР°Р»РёР· РїРµСЂРІРѕРіРѕ С„Р°Р№Р»Р° Рё Р·Р°РїРёРјС‹РІР°РµС‚ РІ РїРµСЂРµРјРµРЅРЅСѓСЋ
     public static void makeSourceFileAnalysis(String path) {
         sourceFileAnalysis = createStatisticListFromFile(path);
         isSourceFileAnalysed = true;
     }
 
-    //Запускает анализ второго файла и записывает в переменную
+    //Р—Р°РїСѓСЃРєР°РµС‚ Р°РЅР°Р»РёР· РІС‚РѕСЂРѕРіРѕ С„Р°Р№Р»Р° Рё Р·Р°РїРёСЃС‹РІР°РµС‚ РІ РїРµСЂРµРјРµРЅРЅСѓСЋ
     public static void makeTargetFileAnalysis(String path) {
         targetFileAnalysis = createStatisticListFromFile(path);
     }
 
-    //Создает мапу на основе двух отсортированных листов
+    //РЎРѕР·РґР°РµС‚ РјР°РїСѓ РЅР° РѕСЃРЅРѕРІРµ РґРІСѓС… РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹С… Р»РёСЃС‚РѕРІ
     public static void createNewEncryptionMap(){
         encryptionMap = new HashMap<>();
-        //сортируем листы по количеству вхождения символов в тексты
+        //СЃРѕСЂС‚РёСЂСѓРµРј Р»РёСЃС‚С‹ РїРѕ РєРѕР»РёС‡РµСЃС‚РІСѓ РІС…РѕР¶РґРµРЅРёСЏ СЃРёРјРІРѕР»РѕРІ РІ С‚РµРєСЃС‚С‹
         sourceFileAnalysis.sort((o1, o2) -> o2.getCountValue() - o1.getCountValue());
         targetFileAnalysis.sort((o1, o2) -> o2.getCountValue() - o1.getCountValue());
         for(int i = 0; i<sourceFileAnalysis.size(); i++){
-            //Закоменченая строка дает информацию о заменах в консоль
+            //Р—Р°РєРѕРјРµРЅС‡РµРЅР°СЏ СЃС‚СЂРѕРєР° РґР°РµС‚ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р·Р°РјРµРЅР°С… РІ РєРѕРЅСЃРѕР»СЊ
             //System.out.println(sourceFileAnalysis.get(i)+ " = " + targetFileAnalysis.get(i));
-            //записывает в мапу пары значений по их популярности в тексте
+            //Р·Р°РїРёСЃС‹РІР°РµС‚ РІ РјР°РїСѓ РїР°СЂС‹ Р·РЅР°С‡РµРЅРёР№ РїРѕ РёС… РїРѕРїСѓР»СЏСЂРЅРѕСЃС‚Рё РІ С‚РµРєСЃС‚Рµ
             encryptionMap.put(targetFileAnalysis.get(i).charValue,sourceFileAnalysis.get(i).charValue);
         }
     }
 
-    //читаем файл и получаем из него информацию о количестве вхождений букв алфавита
+    //С‡РёС‚Р°РµРј С„Р°Р№Р» Рё РїРѕР»СѓС‡Р°РµРј РёР· РЅРµРіРѕ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєРѕР»РёС‡РµСЃС‚РІРµ РІС…РѕР¶РґРµРЅРёР№ Р±СѓРєРІ Р°Р»С„Р°РІРёС‚Р°
     private static ArrayList<CharCounter> createStatisticListFromFile(String pathForRead){
         ArrayList<CharCounter> statistic = createEmptyStatisticList();
         try(FileReader reader = new FileReader(pathForRead)) {
-            //указываем размер буффера для чтения и записи
+            //СѓРєР°Р·С‹РІР°РµРј СЂР°Р·РјРµСЂ Р±СѓС„С„РµСЂР° РґР»СЏ С‡С‚РµРЅРёСЏ Рё Р·Р°РїРёСЃРё
             int buffSize = 2048;
             char[] readBuff = new char[buffSize];
             int c;
-            //читаем из файла в буффер (переменная 'с' хранит количество считанных символов)
+            //С‡РёС‚Р°РµРј РёР· С„Р°Р№Р»Р° РІ Р±СѓС„С„РµСЂ (РїРµСЂРµРјРµРЅРЅР°СЏ 'СЃ' С…СЂР°РЅРёС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‡РёС‚Р°РЅРЅС‹С… СЃРёРјРІРѕР»РѕРІ)
             while((c = reader.read(readBuff))>0){
                 if(c < buffSize)  {
-                    //если размер буффера больше количества считанных символов, создаем новый буффер поменьше
+                    //РµСЃР»Рё СЂР°Р·РјРµСЂ Р±СѓС„С„РµСЂР° Р±РѕР»СЊС€Рµ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‡РёС‚Р°РЅРЅС‹С… СЃРёРјРІРѕР»РѕРІ, СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ Р±СѓС„С„РµСЂ РїРѕРјРµРЅСЊС€Рµ
                     readBuff = Arrays.copyOf(readBuff, c);
                 }
-                //вызываем метод, который занимается подсчетом
+                //РІС‹Р·С‹РІР°РµРј РјРµС‚РѕРґ, РєРѕС‚РѕСЂС‹Р№ Р·Р°РЅРёРјР°РµС‚СЃСЏ РїРѕРґСЃС‡РµС‚РѕРј
                 getStatisticFromBuffer(statistic, readBuff);
             }
         } catch (IOException e) {
@@ -95,19 +95,19 @@ public class StatisticAnalyzer implements OperationType {
         return statistic;
     }
 
-    //метод подсчета символов алфавита в буфере
+    //РјРµС‚РѕРґ РїРѕРґСЃС‡РµС‚Р° СЃРёРјРІРѕР»РѕРІ Р°Р»С„Р°РІРёС‚Р° РІ Р±СѓС„РµСЂРµ
     private static void getStatisticFromBuffer(ArrayList<CharCounter> list, char[] readBuff) {
         for(int i=0; i<readBuff.length; i++){
-            //если символ содержится в алфавите
+            //РµСЃР»Рё СЃРёРјРІРѕР» СЃРѕРґРµСЂР¶РёС‚СЃСЏ РІ Р°Р»С„Р°РІРёС‚Рµ
             int charNum = Alphabet.getAllChars().indexOf(readBuff[i]);
             if(charNum!=-1) {
-                //значение СharCounter увеличивается на 1
+                //Р·РЅР°С‡РµРЅРёРµ РЎharCounter СѓРІРµР»РёС‡РёРІР°РµС‚СЃСЏ РЅР° 1
                 list.get(charNum).incValue();
             }
         }
     }
 
-    //класс пара - символ и его количественное вхождение в текст
+    //РєР»Р°СЃСЃ РїР°СЂР° - СЃРёРјРІРѕР» Рё РµРіРѕ РєРѕР»РёС‡РµСЃС‚РІРµРЅРЅРѕРµ РІС…РѕР¶РґРµРЅРёРµ РІ С‚РµРєСЃС‚
     public static class CharCounter {
         private final char charValue;
         private int countValue = 0;
@@ -120,12 +120,12 @@ public class StatisticAnalyzer implements OperationType {
             return countValue;
         }
 
-        //увеличивает внутренний счетчик на 1
+        //СѓРІРµР»РёС‡РёРІР°РµС‚ РІРЅСѓС‚СЂРµРЅРЅРёР№ СЃС‡РµС‚С‡РёРє РЅР° 1
         public void incValue(){
             countValue++;
         }
 
-        //метод для отладки в консоли
+        //РјРµС‚РѕРґ РґР»СЏ РѕС‚Р»Р°РґРєРё РІ РєРѕРЅСЃРѕР»Рё
         @Override
         public String toString() {
             return charValue + "[" + countValue + "]";
